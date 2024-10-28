@@ -1,0 +1,89 @@
+/* ErrorPage.css */
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8fafc; /* Light background color */
+    color: #333; /* Dark text color */
+    text-align: center;
+  }
+  
+  .error-code {
+    font-size: 6rem;
+    font-weight: bold;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .error-message {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  .bounce {
+    font-size: 4rem;
+    margin-top: 20px;
+    animation: bounce 1s infinite;
+  }
+  
+  /* Keyframe animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateY(-10px);
+    }
+  }
+  /* Bookmarks.css */
+  /* Bookmarks.css */
+
+.no-bookmarks {
+  text-align: center;
+  font-size: 3rem; /* Adjust font size as needed */
+  font-weight: bold;
+  margin-top: 30px;
+  color: #ff5722; /* Color for the message */
+  /* opacity: 0; Start hidden */
+  animation: fadeInShake 1s forwards; /* Animation */
+}
+
+@keyframes fadeInShake {
+  0% {
+    opacity: 0;
+    transform: translateY(10px); /* Start slightly below */
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0); /* Move to final position */
+  }
+  60% {
+    transform: translateX(-10px); /* Shake left */
+  }
+  70% {
+    transform: translateX(10px); /* Shake right */
+  }
+  80% {
+    transform: translateX(-5px); /* Shake left */
+  }
+  100% {
+    transform: translateX(0); /* End at final position */
+  }
+}

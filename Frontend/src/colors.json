@@ -1,0 +1,24 @@
+{
+    "Dessert": "#FFD700",
+    "Seafood": "#1E90FF",
+    "Vegetarian": "#32CD32",
+    "Beef": "#FF6347",
+    "Chicken": "#FFA500",
+    "Pasta": "#E9967A",
+    "Lamb": "#8B4513",
+    "Breakfast": "#FF69B4",
+    "Vegan": "#3CB371",
+    "Side": "#DAA520",
+    "Starter": "#20B2AA",
+    "Goat": "#8A2BE2",
+    "Pork": "#CD5C5C",
+    "Miscellaneous": "#708090",
+    "Vegan Dessert": "#B8860B",
+    "Salad": "#6B8E23",
+    "Drinks": "#4682B4",
+    "Beverages": "#9ACD32",
+    "Specialty": "#BA55D3",
+    "Soups": "#FF4500",
+    "Default": "#D3D3D3"
+  }
+  
