@@ -1,15 +1,23 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import colorsMap from "../../colors.json";
 import countries from "../../countries.json";
-import { addBookmark, removeBookmark } from "../../feature/fetchRecipeSlice";
+import { addBookmark, removeBookmark, setBookmarks } from "../../feature/fetchRecipeSlice";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import '../../App.css'; // Import CSS for animations
+import { Link } from 'react-router-dom';
+import Pagination from '../../components/Pagination';
 
 const Bookmarks = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.fetchRecipe);
-  const { bookmarkedRecipes } = state || [];
+  const { bookmarkedRecipes, postPerPage , currentPage } = state || [];
+
+  const endIndex = currentPage*postPerPage;
+  const startIndex = endIndex - postPerPage;
+
+  const currentPost = bookmarkedRecipes ? bookmarkedRecipes.slice(startIndex,endIndex) : []
+  console.log(currentPost);
+  
 
   return (
     <div className='px-10 py-5'>
@@ -19,7 +27,7 @@ const Bookmarks = () => {
         <h1 className='text-center font-black text-3xl mt-30'>Your Bookmarks</h1>
       )}
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-        {bookmarkedRecipes.map((book) => {
+        {currentPost.map((book) => {
           const isBookmarked = bookmarkedRecipes.some(item => item.idMeal === book.idMeal);
 
           const handleBookmark = () => {
@@ -41,7 +49,9 @@ const Bookmarks = () => {
                 {book.strArea}
               </div>
               <div className="flex mt-2 w-full justify-between pr-7 items-center">
-                <button className="text-xl bg-blue-600 text-white px-4 py-1 rounded-lg font-bold">View Recipe</button>
+                <Link to={`/recipe/${book.strMeal}`}>
+                  <button className="text-xl bg-blue-600 text-white px-4 py-1 rounded-lg font-bold">View Recipe</button>
+                </Link>
                 <button onClick={handleBookmark}>
                   {isBookmarked ? <FaBookmark className="text-2xl cursor-pointer text-purple-700" /> : <FaRegBookmark className="text-2xl cursor-pointer" />}
                 </button>
@@ -50,6 +60,7 @@ const Bookmarks = () => {
           );
         })}
       </div>
+       { bookmarkedRecipes && <Pagination currentPage={currentPage} postPerPage={postPerPage} totalPosts={bookmarkedRecipes.length} setCurrentPage={currentPage} currentPost={currentPost}/>}
     </div>
   );
 };

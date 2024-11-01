@@ -1,11 +1,11 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 
 
 export const fetchRecipe = createAsyncThunk("fetchRecipes", async (query) => {
     try {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
         const data = await response.json();
-        console.log(data.meals);
+        // console.log(data.meals);
         return data;
 
     } catch (error) {
@@ -20,7 +20,9 @@ export const recipeSlice = createSlice({
         isLoading: false,
         isError: false,
         fetchedData: [] || null,
-        bookmarkedRecipes: [] || null
+        bookmarkedRecipes: JSON.parse(localStorage.getItem("savedRecipe")) || [],
+        postPerPage:9,
+        currentPage:1
     },
     reducers:{
         addBookmark:(state,action)=>{
@@ -29,16 +31,23 @@ export const recipeSlice = createSlice({
                 state.bookmarkedRecipes.push(action.payload)
            }
         },
+        pagination:(state,action)=>{
+            state.currentPage = action.payload
+        },
         removeBookmark:(state,action)=>{
             state.bookmarkedRecipes = state.bookmarkedRecipes.filter((items)=>items.idMeal !== action.payload.idMeal)
-            console.log(state.bookmarkedRecipes);
-            
+            // console.log(state.bookmarkedRecipes);
+            localStorage.setItem("savedRecipe", JSON.stringify(state.bookmarkedRecipes));
+        },
+        setBookmarks:(state,action)=>{
+            state.bookmarkedRecipes = action.payload
         }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchRecipe.fulfilled, (state, action) => {
             state.isLoading = false,
             state.fetchedData = action.payload
+            state.currentPage = 1
            state.isError !== action.payload.meals
         })
         builder.addCase(fetchRecipe.pending, (state, action) => {
@@ -52,5 +61,5 @@ export const recipeSlice = createSlice({
         })
     }
 })
-export const {addBookmark, removeBookmark} = recipeSlice.actions
+export const {addBookmark, removeBookmark, setBookmarks,pagination} = recipeSlice.actions
 export default recipeSlice.reducer 

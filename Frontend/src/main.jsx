@@ -6,9 +6,7 @@ import { Provider } from 'react-redux'
 import { store } from './store.js'
 import {  createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import Layout from './Layout.jsx'
-import Bookmarks from './pages/bookmark/Bookmarks.jsx'
-import ErrorPage from './pages/ErrorPage/ErrorPage.jsx'
-import About from './pages/About/About.jsx'
+import {About,ErrorPage,Bookmarks,RecipeDetails} from "./pages/index.js"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +14,7 @@ const router = createBrowserRouter(
       <Route path='' element={<App/>}/>
       <Route path='/bookmarks' element={<Bookmarks/>}/>
       <Route path='/about' element={<About/>}/>
+      <Route path="/recipe/:id" element={<RecipeDetails/>} />
       <Route path = "*" element={<ErrorPage/>} />
     </Route>
   )
