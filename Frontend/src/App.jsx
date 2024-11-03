@@ -3,21 +3,25 @@ import './App.css';
 import Search from './components/serach/Search';
 import Loading from './components/loading/Loading';
 import Card from './components/card/Card';
-import Navbar from './components/navbar/Navbar';
+import { lazy, Suspense } from "react";
 
 function App() {
-  
+
   const state = useSelector(state => state.fetchRecipe);
 
-  const {isLoading } = state || {};
+  const { isLoading } = state || {};
 
-  
+
 
   return (
     <div className='bg-zinc-300'>
-      <Search/>
-      {isLoading && <Loading/>}
-      <Card/>
+
+      <Search />
+
+      {isLoading && <Loading />}
+
+      <Card />
+
     </div>
   );
 }

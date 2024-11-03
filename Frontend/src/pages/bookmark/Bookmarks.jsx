@@ -39,7 +39,7 @@ const Bookmarks = () => {
           };
 
           return (
-            <div className="text-black bg-[#e0e0e0] w-[84%] px-3 py-3 rounded-lg" key={book.idMeal}>
+            <div className="text-black bg-[#e0e0e0] mt-4 w-[84%] px-3 py-3 rounded-lg" key={book.idMeal}>
               <img src={`${book.strMealThumb}`} className="w-[100%] rounded-lg" alt="" />
               <h2 className="font-bold my-3 text-2xl">{book.strMeal}</h2>
               <div style={{ backgroundColor: colorsMap[book.strCategory] }} className={`px-3 py-1 rounded-lg font-bold text-center my-1 ${book.strCategory.toLowerCase() === "vegetarian" || book.strCategory.toLowerCase() === "miscellaneous" || book.strCategory.toLowerCase() === "breakfast" ? "w-32" : "w-20"}`}>
