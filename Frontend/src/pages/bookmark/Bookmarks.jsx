@@ -16,7 +16,7 @@ const Bookmarks = () => {
   const startIndex = endIndex - postPerPage;
 
   const currentPost = bookmarkedRecipes ? bookmarkedRecipes.slice(startIndex,endIndex) : []
-  console.log(currentPost);
+  
   
 
   return (
